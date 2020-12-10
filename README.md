@@ -1,2 +1,2 @@
 # evanbordelon.github.io
-student webcite 
+student website 
