@@ -8,7 +8,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: thistle;
 			font-size: 300%;
 			text-align: center;
 			display: block;
@@ -44,8 +44,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
                 box.css("left", newPositionX);
+                box.css("top", newPositionY);
             
 			}
 
@@ -63,6 +64,9 @@
             var positionX = 0;
             var points = 0;
             var speed = 10;
+            var positionY = 0;
+            var speedY = 2;
+            var boardHeight = jQuery(window).height();
             
 			
 			/* 
@@ -72,10 +76,12 @@
 			*/
 			function update() {
                 positionX = positionX + speed;
-                moveBoxTo(positionX);
+                positionY = positionY + speedY;
+                moveBoxTo(positionX, positionY);
                 if(positionX > boardWidth) {
 
                     speed = speed * -1;
+                
                 }
 
                 if(positionX < 0 ) {
@@ -84,8 +90,20 @@
 
                 }
 
-        
+                if(positionY > boardHeight) {
 
+                    speedY = speedY * -1;
+
+                }
+                
+                if(positionY < 0) {
+
+                    speedY = speedY * -1;
+
+                }
+               
+
+                                
 			};
 
 			/* 
@@ -110,7 +128,8 @@
                     speed = speed - 3;
 
                 }
-			};
+            
+            };
 		})();
 	</script>
 </body>
