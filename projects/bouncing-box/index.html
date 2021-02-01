@@ -78,7 +78,7 @@
                 positionX = positionX + speed;
                 positionY = positionY + speedY;
                 moveBoxTo(positionX, positionY);
-                if(positionX > boardWidth) {
+                if(positionX > boardWidth - 60) {
 
                     speed = speed * -1;
                 
@@ -90,7 +90,7 @@
 
                 }
 
-                if(positionY > boardHeight) {
+                if(positionY > boardHeight - 70) {
 
                     speedY = speedY * -1;
 
