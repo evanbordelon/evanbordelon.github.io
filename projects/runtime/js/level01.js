@@ -19,8 +19,32 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 400, "y": groundY },
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
+                { "type": "enemy", "x": 500, "y": groundY },
+                { "type": "spike", "x": 300, "y": groundY },
+                { "type": "reward", "x": 700, "y": groundY },
             ]
         };
+        
+        for(var i = 0; i < levelData.gameItems.length; i++) {
+            obj = levelData.gameItems[i];
+            objX = obj.x;
+            objY = obj.y;
+            objType = obj.type;
+            if (objType === "sawblade") {
+                createSawBlade(objX, objY);
+            } else if (objType === "enemy") {
+                createEnemy(objX, objY);  
+            } else if (objType === "spike"){
+                createSpike(objX, objY);
+            } else {
+                createReward(objX, objY);
+            }
+        };
+        
+        
+        
+        
+        
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
         game.setDebugMode(true);
@@ -100,7 +124,7 @@ var level01 = function (window) {
     };
 
         
-        createEnemy(400,groundY-10);
+        /*createEnemy(400,groundY-10);
         createEnemy(800,groundY-20);
         createEnemy(200,groundY-50);
         createSpike(500, 100);
@@ -108,7 +132,7 @@ var level01 = function (window) {
         createSawBlade(400, 250);
         createSawBlade(600, 100);
         createSawBlade(800, 250);
-        createReward(500, 200);
+        createReward(500, 200); */
         
 
         
