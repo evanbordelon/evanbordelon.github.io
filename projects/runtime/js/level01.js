@@ -20,7 +20,7 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
                 { "type": "enemy", "x": 500, "y": groundY },
-                { "type": "spike", "x": 300, "y": groundY },
+                { "type": "spike", "x": 1000, "y": groundY - 50},
                 { "type": "reward", "x": 700, "y": groundY },
             ]
         };
@@ -65,7 +65,7 @@ var level01 = function (window) {
         };
 
         function createSpike(x , y) {
-        var hitZoneSize = 10;
+        var hitZoneSize = 20;
         var damageFromObstacle = 25;
         var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
         sawBladeHitZone.x = x;
@@ -73,20 +73,22 @@ var level01 = function (window) {
         game.addGameItem(sawBladeHitZone);
         var obstacleImage = draw.bitmap('img/spike.png');
         sawBladeHitZone.addChild(obstacleImage);
-        obstacleImage.x = -10;
-        obstacleImage.y = -10;
-        };
+        obstacleImage.x = -20;
+        obstacleImage.y = -20;
+        obstacleImage.scaleX = .05;
+        obstacleImage.scaleY = .05; 
+    };
 
         function createEnemy(x , y) {
         var enemy = game.createGameItem('enemy',25);
-        var redSquare = draw.rect(50,50,'red');
-        redSquare.x = -25;
-        redSquare.y = -25;
-        enemy.addChild(redSquare);
+        var redCircle = draw.circle(20, 'red');
+        redCircle.x = -25;
+        redCircle.y = -25;
+        enemy.addChild(redCircle);
         enemy.x = x;
         enemy.y = y;
         game.addGameItem(enemy);
-        enemy.velocityX = 1;
+        enemy.velocityX = -1;
         enemy.rotationVelocity = 10;
    
         enemy.onPlayerCollision = function() {
@@ -104,18 +106,19 @@ var level01 = function (window) {
     };
         
         function createReward(x , y) {
-       var reward = game.createGameItem('reward',25);
-        var bluSquare = draw.rect(50,50,'blue');
-        bluSquare.x = -25;
-        bluSquare.y = -25;
-        reward.addChild(bluSquare);
+        var reward = game.createGameItem('reward',25);
+        var bluCircle = draw.circle(20,'blue');
+        bluCircle.x = -25;
+        bluCircle.y = -25;
+        reward.addChild(bluCircle);
         reward.x = x;
         reward.y = y;
         game.addGameItem(reward);
-        reward.velocityX = 0;
-        reward.rotationVelocity = 0;
+        reward.velocityX = -1;
+        reward.rotationVelocity = 10;
         
-        reward.onPlayerCollision() = function() {
+        reward.onPlayerCollision = function() {
+            console.log('Halle has collected a reward')
             game.increaseScore(25);
             game.changeIntegrity(15);
             reward.fadeOut();
@@ -134,7 +137,7 @@ var level01 = function (window) {
         createSawBlade(800, 250);
         createReward(500, 200); */
         
-
+  
         
         // DO NOT EDIT CODE BELOW HERE
     }
